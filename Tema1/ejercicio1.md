@@ -9,10 +9,12 @@ Seguimos los siguientes pasos:
 1. Instalamos un entorno virtual, en este caso se ha elegido **env**
 ![Instalación de env](images/1_instalarVirtualenv.png)
 
+
 2. Creamos un entorno mediante virtualenv, al que llamamos env:
 ![Creamos entorno](images/2_accederVirtualENV.png)
 
-3. Accedemos al entorno:
+
+3. Accedemos al entorno, como se puede ver en la imagen que se muestra a continuación:
 ![Accedemos al entorno](images/3_accederENV.png)
 
 
