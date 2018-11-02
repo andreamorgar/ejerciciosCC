@@ -19,4 +19,4 @@ Seguimos los siguientes pasos:
 
 
 Por último vamos a consultar la versión de Python instalada. Como se puede ver en la imagen, esta versión se corresponde con la última versión estable (3.6.4)
-![Accedemos al entorno](imagen/Captura de pantalla de 2018-10-31 18-39-22)
+![Accedemos al entorno](imagen/versionpython.png)
