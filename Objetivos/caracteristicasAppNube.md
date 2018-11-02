@@ -13,4 +13,4 @@ Las características más relevantes de estas aplicaciones son:
 * Agilidad: se puede proporcionar todos los recursos que se necesiten
 
 
-Información [aqui](https://www.tecnoinver.cl/caracteristicas-de-los-servicios-en-la-nube/) y [aqui](https://www.powerdata.es/cloud)
+Información [aquí](https://www.tecnoinver.cl/caracteristicas-de-los-servicios-en-la-nube/) y [aquí](https://www.powerdata.es/cloud)
