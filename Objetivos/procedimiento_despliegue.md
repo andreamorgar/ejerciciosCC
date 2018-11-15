@@ -63,7 +63,7 @@ Con dichas órdenes, estamos creando un proyecto de despliegue en Heroku cuando 
 ### 12. Conexión con travis, para que nuestro proyecto no se despliegue antes de pasar los tests
 Desde nuestra cuenta en Heroku, nos vamos a la pestaña de Deploy, y seleccionamos la opción de *Enable automatic deploys*, para que con cada push a nuestro repositorio, se pueda desplegar automáticamente en Heroku. Para que los test se realicen previo al despliegue, tenemos que seleccionar la opción de no desplegar hasta que se ejecuten de forma correcta los tests de travis. Todo este proceso lo realizo siguiendo las instrucciones de [aqui](https://medium.com/@felipeluizsoares/automatically-deploy-with-travis-ci-and-heroku-ddba1361647f)
 
-### 13. Hacemos $ heroku login, que nos manda a la web a hacer login
+### 13. Hacemos heroku login, que nos manda a la web a hacer login
 ~~~
 $ heroku git:remote -a <nombre proyecto>
 ~~~
@@ -71,7 +71,7 @@ $ heroku git:remote -a <nombre proyecto>
 [Aquí](https://devcenter.heroku.com/articles/git) se puede ver más o menos todos los pasos que hemos ido siguiendo a lo largo del proceso.
 
 
-### Otros errores
+### 14. Otros errores
 Por último faltaría un problema con la distribución en directorios de mis archivos, que impide que se ejecuten mis tests al no estar en la misma ruta que los ficheros a testear.
 Este problema lo he solucionado como se indica [aquí](https://stackoverflow.com/questions/1732438/how-do-i-run-all-python-unit-tests-in-a-directory), con la orden:
 ~~~
