@@ -40,16 +40,19 @@ Sin embargo, por alguna razón, no consigo que funcione este método, por lo que
 
 
 ### 8. Creo el fichero requeriments.txt
-Con este fichero, podremos instalar mediante pip todo lo necesario para que funcione nuestro servicio. Evitando usar la orden "pip freeze", he utilizado el paquete [pipreqs](https://github.com/bndr/pipreqs), que genera el fichero _requeriments.txt_ que se puede ver [aquí](https://github.com/andreamorgar/ProyectoCC/blob/master/requirements.txt)
+Con este fichero, podremos instalar mediante pip todo lo necesario para que funcione nuestro servicio. Evitando usar la orden "pip freeze", he utilizado el paquete [pipreqs](https://github.com/bndr/pipreqs), que genera el fichero _requeriments.txt_ que se puede ver [aquí](https://github.com/andreamorgar/ProyectoCC/blob/master/requirements.txt). De esta forma instalaremos únicamente lo estrictamente necesario para nuestra versión actual del proyecto.
 
 
-### 9. Fichero procfile
-Para ello sigo las indicaciones de [aquí](https://devcenter.heroku.com/articles/python-gunicorn). Como se está indicando que utilicemos guinicorn, debemos instalarlo propiamente. [Guincorn](https://gunicorn.org/) es un servidor HTTP para Python, que es compatible con Flask, lo que me permite su utilización. Este hecho provoca que tenga que volver a actualizar mi fichero _requeriments.txt_, ya que debe añadir esta nueva incorporación.
+### 9. Fichero Procfile
+Para redactar el contenido de este fichero, sigo las indicaciones de [aquí](https://devcenter.heroku.com/articles/python-gunicorn). Como se está indicando que utilicemos guinicorn, debemos instalarlo propiamente, para un correcto funcionamiento del proyecto. [Guincorn](https://gunicorn.org/) es un servidor HTTP para Python, que es compatible con Flask, lo que me permite su utilización. Este hecho provoca que tenga que volver a actualizar mi fichero _requeriments.txt_, ya que debe añadir esta nueva incorporación.
+
+El contenido del fichero Procfile se puede ver [aquí](https://github.com/andreamorgar/ProyectoCC/blob/master/Procfile). Como se observa, únicamente contiene una línea en la que indicamos el servidor HTTP utilizado y el nombre del fichero en el que se implementa nuestro servicio.
 
 ### 10. Fichero runtime.txt
 Necesitamos también crear un fichero [runtime.txt](https://github.com/andreamorgar/ProyectoCC/blob/master/runtime.txt), para especificarle a Heroku la versión de Python con la que debe ejecutar los ficheros. En este caso, es importante destacar un error que tuve, ya que Heroku solo es compatible con las versiones de Python 3.6.6. y 3.7.0. En mi caso, yo trabajaba con la versión 3.5.2, lo que impedía que se realizara de forma correcta el despliegue. Viendo las posibilidades de corrección que me proporcionaba Heroku mediante la terminal, simplemente tenía que cambiar la versión en runtime.txt para poder continuar, teniendo en cuenta que después debería comprobar que los tests seguían funcionando a pesar de este cambio en la versión. De esta forma, he podido comprobar, cómo los tests no solo comprobaban que el código estaba correcto, sino que también sirve para asegurar el funcionamiento de mi proyecto en el despliegue.
+Esta es la razón por la que runtime.txt contiene la versión 3.6.6 de python.
 
-Se puede acceder a mi fichero runtime.txt desde [aquí](https://github.com/andreamorgar/ProyectoCC/blob/master/runtime.txt).
+Se puede acceder a mi fichero runtime.txt desde [aquí](https://github.com/andreamorgar/ProyectoCC/blob/master/runtime.txt). Como se puede observar en el fichero, únicamente contiene la versión de Python con la que vamos a funcionar.
 
 ### 11. Desplegar en heroku
 Para ello, seguimos los pasos indicados [aquí](https://devcenter.heroku.com/articles/getting-started-with-python#deploy-the-app). Las tres órdenes importantes a realizar son las siguientes:
