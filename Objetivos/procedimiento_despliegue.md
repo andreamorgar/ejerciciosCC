@@ -74,7 +74,9 @@ $ heroku git:remote -a <nombre proyecto>
 ### Otros errores
 Por último faltaría un problema con la distribución en directorios de mis archivos, que impide que se ejecuten mis tests al no estar en la misma ruta que los ficheros a testear.
 Este problema lo he solucionado como se indica [aquí](https://stackoverflow.com/questions/1732438/how-do-i-run-all-python-unit-tests-in-a-directory), con la orden:
-$python -m unittest discover test/
+~~~
+python -m unittest discover test/
+~~~
 
 
 ### Una vez seguidos todos estos pasos, se obtiene un correcto despliegue del servicio REST que hemos realizado.
