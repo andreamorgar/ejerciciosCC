@@ -1,0 +1,13 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Clone repo
+      git:
+        repo: https://github.com/andreamorgar/ProyectoCC.git
+        clone: yes
+        dest: ProyectoCC
+    - name: Access to repo
+      raw: cd ProyectoCC
+    - name: Install requeriments
+      raw: pip3 install -r requirements.txt

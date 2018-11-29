@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Install base packages
+      apt: name={{ item }} state=present
+      with_items:
+        - git
+        - python3-pip
+      tags:
+        - packages
+- import_playbook: specific_playbook.yml

@@ -79,6 +79,67 @@ Podemos destacar dos aspectos principales:
 
 
 #### Fichero playbook.yml
-Para entender bien el funcionamiento de un playbook de ansible, y sobretodo, qué hace exactamente y de qué forma, podemos consultar el apartado correspondiente en la guía oficial [aquí](https://docs.ansible.com/ansible/2.7/user_guide/playbooks_intro.html). De esta página, es de donde nos basaremos para llevar a cabo este apartado.
+Para entender bien el funcionamiento de un playbook de ansible, y sobretodo, qué hace exactamente y de qué forma, podemos consultar el apartado correspondiente en la guía oficial [aquí](https://docs.ansible.com/ansible/2.7/user_guide/playbooks_intro.html). Además, se sugiere consultar este otro [enlace](https://github.com/ansible/ansible-examples), pues contiene una serie de ejemplos y buenas prácticas que se pueden llevar a cabo. De estos dos enlaces, es de donde nos basaremos para llevar a cabo este apartado.
 
 - Lo primero: python3 [aquí](https://medium.com/@perwagnernielsen/ansible-tutorial-part-2-installing-packages-41d3ab28337d)
+
+
+En primer lugar instalamos git, ya que nos hace falta para poder acceder a nuestro proyecto desde la máquina virtual que hemos creado mediante Vagrant. Para ello, modificamos el fichero *playbook.yml* tal y como se muestra a continuación:
+~~~
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Instala git
+      apt: pkg=git state=present
+~~~
+Como se puede ver, simplemente hemos utilizado el gestor de paquetes para instalar git.
+
+
+
+
+
+
+
+De momento, tenemos hasta este punto un único playbook genérico. Para su creación, me he inspirado en el tutorial al que se puede acceder desde [aquí](https://medium.com/@perwagnernielsen/ansible-tutorial-part-2-installing-packages-41d3ab28337d).
+
+Hemos utilizado una máquina Debian con Python 3, que ha sido escogida debido a que de esta forma, no solo contamos con Python instalado en la máquina, sino que por defecto ya trae consigo Python 3, tal y como se puede consultar [aquí](https://linuxconfig.org/how-to-change-default-python-version-on-debian-9-stretch-linux).
+
+En primer lugar, el archivo playbook.yml va a representar únicamente a aquellas cosas genéricas que queramos instalar en una máquina virtual. Por tanto, tendríamos que instalar dos cosas indispensables para nuestro servicio web de la práctica anterior, las cuáles obtendremos a través del gestor de paquetes **apt**:
+- **Git**: sin git, entre otras cosas, no podemos hacer clone de nuestro repositorio, por lo que es esencial en este caso.
+
+- **Pip**: necesario porque voy a instalar los requerimientos necesarios para poder mi proyecto en la máquina de esa forma. Como estamos trabajando con Python 3, queremos pip 3 concretamente.
+
+A continuación podemos ver
+~~~
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Install base packages
+      apt: name={{ item }} state=present
+      with_items:
+        - git
+        - python3-pip
+      tags:
+        - packages
+~~~
+
+#### Siguiendo las buenas prácticas....
+
+A pesar de que hay múltiples fuentes que defienden que un playbook debe ser un proceso cerrado (como por ejemplo [aquí](https://serverfault.com/questions/750856/how-to-run-multiple-playbooks-in-order-with-ansible)), esta afirmación no es compartida por el estándar de buenas prácticas de Ansible.
+
+Si consultamos la guía de buenas prácticas de Ansible, podemos encontrar una sección llamada *Creating Reusable Playbooks*, a la cuál podemos acceder desde [aquí](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse.html). En ella podemos ver, que ess preferible reutilizar distintos playbooks, en lugar de empezar con uno de la forma que vimos arriba. Por ello, la parte específica de lo que queremos ejecutar, la vamos a especificar en un segundo playbook, que contendrá todos aquellos específicos para poder ejecutar y desplegar nuestro proyecto:
+
+- **git clone**: para poder descargar nuestro repositorio en la máquina virtual.
+
+- **Dependencias específicas de la aplicación**: en este caso, aquello que sea imprescindible para el correcto funcionamiento del servicio web.
+
+
+Por tanto utilizaremos un nuevo fichero, al que hemos llamado *especific_playbook.yml*,
+el cuál se encargará de incorporar aquellos aspectos esenciales.
+
+
+#### Fichero especific_playbook.yaml
+
+Para git clone: https://docs.ansible.com/ansible/2.5/modules/git_module.html
