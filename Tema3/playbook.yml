@@ -7,11 +7,6 @@
       apt:
         name: ['git', 'python-pip', 'python3-pip', 'python-setuptools']
         state: present
-      with_items:
-        - git
-        - python-pip
-        - python3-pip
-        - python-setuptools
       tags:
         - packages
     - name: Redirigir puertos
