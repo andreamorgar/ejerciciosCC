@@ -1,0 +1,6 @@
+---
+- name: deploy MongoDB and configure the database
+  hosts: all
+  become: yes
+  roles:
+    - ansible-role-mongodb

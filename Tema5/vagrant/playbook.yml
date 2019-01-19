@@ -1,0 +1,21 @@
+---
+- hosts: all
+  become: yes
+  gather_facts: False
+  tasks:
+    - name: Install base packages
+      apt:
+        name: ['git', 'python-pip', 'python3-pip', 'python-setuptools']
+        state: present
+        update_cache: yes
+      tags:
+        - packages
+      async: 120
+      poll: 60
+
+    - name: Upgrade pip
+      pip: name=pip state=latest
+      tags:
+        - packages
+
+- import_playbook: specific_playbook.yml
