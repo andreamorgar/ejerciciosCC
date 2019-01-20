@@ -24,7 +24,7 @@ Vagrant.configure("2") do |config|
       az.vm_name = 'maquinaservicio'
       az.admin_username = "andreamg"
       az.vm_size = 'Standard_B1s' # dejo esta de momento porque Basic_A0 va muy lenta
-      az.resource_group_name = 'resourcegrouphito5v2'
+      az.resource_group_name = 'resourcegrouphito5'
       az.location = 'francecentral'
       az.tcp_endpoints = [80,27017]
       az.virtual_network_name = "andreanetwork"
@@ -55,7 +55,7 @@ Vagrant.configure("2") do |config|
     az.vm_name = 'maquinamongo'
     az.vm_size = 'Standard_B1s'
     az.admin_username = "andreamg"
-    az.resource_group_name = 'resourcegrouphito5v2'
+    az.resource_group_name = 'resourcegrouphito5'
     az.location = 'francecentral'
     az.tcp_endpoints = [80,27017]
     az.virtual_network_name = "andreanetwork"
