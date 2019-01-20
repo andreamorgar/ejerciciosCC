@@ -22,46 +22,51 @@ Vagrant.configure("2") do |config|
       # az.vm.network "private_network", ip: "192.168.0.10" #https://www.vagrantup.com/docs/networking/private_network.html
       az.vm_image_urn = 'Canonical:UbuntuServer:16.04-LTS:latest'
       az.vm_name = 'maquinaservicio'
-      az.vm_size = 'Basic_A0'
-      az.resource_group_name = 'resourcegrouphito55'
+      az.admin_username = "andreamg"
+      az.vm_size = 'Standard_B1s' # dejo esta de momento porque Basic_A0 va muy lenta
+      az.resource_group_name = 'resourcegrouphito5v2'
       az.location = 'francecentral'
+      az.tcp_endpoints = [80,27017]
+      az.virtual_network_name = "andreanetwork"
     end
 
     maquina1.vm.provision "ansible" do |ansible|
-      ansible.verbose = "vvvv"
+      # ansible.verbose = "vvvv"
       ansible.playbook = "playbook.yml"
     end
 
   end
 
-  # config.vm.define "maquina2" do |maquina2|
-  #   # maquina2.vm.network "public_network", ip: "192.168.0.19"
-  #   # maquina2.vm.network "private_network", ip: "192.168.0.11" #https://www.vagrantup.com/docs/networking/private_network.html
-  #
-  #   maquina2.vm.hostname = "maquinamongo"
-  #   maquina2.vm.provider "azure" do |az|  # Parametros para AZURE
-  #   # Variables de entorno
-  #   az.tenant_id = ENV['AZURE_TENANT_ID']
-  #   az.client_id = ENV['AZURE_CLIENT_ID']
-  #   az.client_secret = ENV['AZURE_CLIENT_SECRET']
-  #   az.subscription_id = ENV['AZURE_SUBSCRIPTION_ID']
-  #
-  #   # Datos para la MV
-  #   # az.vm.network "private_network", ip: "192.168.0.11" #https://www.vagrantup.com/docs/networking/private_network.html
-  #   az.vm_image_urn = 'Canonical:UbuntuServer:16.04-LTS:latest'
-  #   az.vm_name = 'maquinamongo'
-  #   az.vm_size = 'Basic_A0'
-  #   az.resource_group_name = 'resourcegrouphito5version3'
-  #   az.location = 'francecentral'
-  #   az.tcp_endpoints = 27017
-  #   end
-  #
-  #   maquina2.vm.provision "ansible" do |ansible|
-  #     ansible.verbose = "vvvv"
-  #     ansible.playbook = "playbook-mongodb.yml"
-  #   end
-  #
-  # end
+  config.vm.define "maquina2" do |maquina2|
+    # maquina2.vm.network "public_network", ip: "192.168.0.19"
+    # maquina2.vm.network "private_network", ip: "192.168.0.11" #https://www.vagrantup.com/docs/networking/private_network.html
+
+    maquina2.vm.hostname = "maquinamongo"
+    maquina2.vm.provider "azure" do |az|  # Parametros para AZURE
+    # Variables de entorno
+    az.tenant_id = ENV['AZURE_TENANT_ID']
+    az.client_id = ENV['AZURE_CLIENT_ID']
+    az.client_secret = ENV['AZURE_CLIENT_SECRET']
+    az.subscription_id = ENV['AZURE_SUBSCRIPTION_ID']
+
+    # Datos para la MV
+    # az.vm.network "private_network", ip: "192.168.0.11" #https://www.vagrantup.com/docs/networking/private_network.html
+    az.vm_image_urn = 'Canonical:UbuntuServer:16.04-LTS:latest'
+    az.vm_name = 'maquinamongo'
+    az.vm_size = 'Standard_B1s'
+    az.admin_username = "andreamg"
+    az.resource_group_name = 'resourcegrouphito5v2'
+    az.location = 'francecentral'
+    az.tcp_endpoints = [80,27017]
+    az.virtual_network_name = "andreanetwork"
+    end
+
+    maquina2.vm.provision "ansible" do |ansible|
+      # ansible.verbose = "vvvv"
+      ansible.playbook = "playbook-mongodb.yml"
+    end
+
+  end
 
 
 end

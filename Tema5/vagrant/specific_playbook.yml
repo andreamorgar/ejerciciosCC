@@ -2,7 +2,6 @@
 - hosts: all
   tasks:
     - name: Clone repo
-      become: False
       git:
         repo: https://github.com/andreamorgar/ProyectoCC.git
         clone: yes
